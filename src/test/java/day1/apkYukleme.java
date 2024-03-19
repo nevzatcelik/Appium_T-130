@@ -1,3 +1,5 @@
+package day1;
+
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.remote.MobileCapabilityType;
@@ -20,7 +22,7 @@ public class apkYukleme {
         capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION,"10.0");
         capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME,"UiAutomator2");
 
-        capabilities.setCapability(MobileCapabilityType.APP,"C:\\Users\\ahmet\\IdeaProjects\\Appium_T130\\Apps\\Apk Bilgisi_2.3.4_apkcombo.com.apk");
+        capabilities.setCapability(MobileCapabilityType.APP,"C:\\Users\\ahmet\\IdeaProjects\\Appium_T130\\Apps\\arabam.com_5.1.6_Apkpure.apk");
         // app capabilities degeri bir uygulamayi yuklemek icin kullanilan degerdir.
         // Bu capability eger ki bir uygulama yukle degilse onu kontrol eder ve yukler eger yuklu ise uygulamainin yuklu olup olmadigini kontrol eder
         // ve yukluyse uygulamayi acar
