@@ -1,8 +1,11 @@
 package day2;
 
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.remote.MobileCapabilityType;
+import io.appium.java_client.touch.WaitOptions;
+import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
@@ -10,6 +13,7 @@ import org.testng.annotations.Test;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 public class ArabamAppTest {
@@ -35,7 +39,7 @@ public class ArabamAppTest {
     }
 
     @Test
-    public void arabamTest() {
+    public void arabamTest() throws InterruptedException {
 
       /*
         driver.activateApp("com.dogan.arabam");
@@ -48,8 +52,22 @@ public class ArabamAppTest {
         // uygulaminin basarili bir sekilde acildigi dogrulanir
         Assert.assertTrue(driver.findElementByAccessibilityId("İlan Ver").isDisplayed());
         // alt menuden ilan ara butonuna tiklanir
+        driver.findElementByXPath("//*[@text='İlan Ara']").click();
         // kategori olarak otomobil secilir
+        driver.findElementByXPath("//*[@text='Otomobil']").click();
+        Thread.sleep(2000);
         // arac olarak Volkswagen secilir
+        TouchAction action=new TouchAction<>(driver);
+        action
+                .press(PointOption.point(530,1553)) // ekranda kaydirma islemini baslatmak icin belirledigimiz ilk baslangic noktasi
+                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(130)))
+                // kaydirma islemi gerceklesirken baslangic noktasi ile (press) ile son (moveTo) arasinda gecen zaman
+                // Eger bu sure arttirilirsa gidilen yol mesafe miktari kisalir yani daha az yol kat ederiz
+                // Eger bu sure azaltilirsa gidilen yol mesafe miktari artar yani daha fazla yol kat etmis oluruz.
+                .moveTo(PointOption.point(530,336)) // ekranda kaydirma islemini bitirmek icin kaydirdigimiz son nokta
+                .release() // parmagimizi ekrandan kaldirma ve kaydirma islemini sonlandirma
+                .perform(); // verilen action gorevlerini yerine getirme
+
         // arac markasi olarak passat secilir
         // 1.4 TSI BlueMotion secilir
         // Paket secimi yapilir
