@@ -55,12 +55,12 @@ public class ArabamAppTest {
         driver.findElementByXPath("//*[@text='İlan Ara']").click();
         // kategori olarak otomobil secilir
         driver.findElementByXPath("//*[@text='Otomobil']").click();
-        Thread.sleep(2000);
+        Thread.sleep(3000);
         // arac olarak Volkswagen secilir
         TouchAction action=new TouchAction<>(driver);
         action
                 .press(PointOption.point(530,1553)) // ekranda kaydirma islemini baslatmak icin belirledigimiz ilk baslangic noktasi
-                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(130)))
+                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(150)))
                 // kaydirma islemi gerceklesirken baslangic noktasi ile (press) ile son (moveTo) arasinda gecen zaman
                 // Eger bu sure arttirilirsa gidilen yol mesafe miktari kisalir yani daha az yol kat ederiz
                 // Eger bu sure azaltilirsa gidilen yol mesafe miktari artar yani daha fazla yol kat etmis oluruz.
@@ -68,11 +68,33 @@ public class ArabamAppTest {
                 .release() // parmagimizi ekrandan kaldirma ve kaydirma islemini sonlandirma
                 .perform(); // verilen action gorevlerini yerine getirme
 
+        // driver.findElementByXPath("//*[@text='Volkswagen']").click();
+         // 230 1289
+        Thread.sleep(1000);
+         action.
+                 press(PointOption.point(230,1289))
+                 .release()
+                 .perform();
         // arac markasi olarak passat secilir
+        driver.findElementByXPath("//*[@text='Passat']").click();
         // 1.4 TSI BlueMotion secilir
+        driver.findElementByXPath("//*[@text='1.4 TSi BlueMotion']").click();
         // Paket secimi yapilir
+        driver.findElementByXPath("//*[@text='Highline']").click();
         // Ucuzdan pahaliya siralama yaparak filtreleme yapilir
+        driver.findElementById("com.dogan.arabam:id/textViewSorting").click();
+        driver.findElementByXPath("//*[@text='Fiyat - Ucuzdan Pahalıya']").click();
+
         // Gelen en ucuz aracin 500.000 tl den buyuk oldugu dogrulanir
+         String enUcuzAracFiyati=driver.findElementByXPath("(//*[@resource-id='com.dogan.arabam:id/tvPrice'])[1]").getText();
+        System.out.println(enUcuzAracFiyati); // 760.000 TL
+
+        enUcuzAracFiyati=enUcuzAracFiyati.replaceAll("\\D","");
+        System.out.println(enUcuzAracFiyati); // 760000
+
+        Assert.assertTrue(Integer.parseInt(enUcuzAracFiyati)>500000);
+
+
     }
 
   @Test
