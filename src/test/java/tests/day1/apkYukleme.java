@@ -1,4 +1,4 @@
-package day1;
+package tests.day1;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
@@ -22,7 +22,7 @@ public class apkYukleme {
         capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION,"10.0");
         capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME,"UiAutomator2");
 
-        capabilities.setCapability(MobileCapabilityType.APP,"C:\\Users\\ahmet\\IdeaProjects\\Appium_T130\\Apps\\arabam.com_5.1.6_Apkpure.apk");
+        capabilities.setCapability(MobileCapabilityType.APP,"C:\\Users\\ahmet\\IdeaProjects\\Appium_T130\\Apps\\Kiwi.com - Book Cheap Flights_2023.14.0_Apkpure.apk");
         // app capabilities degeri bir uygulamayi yuklemek icin kullanilan degerdir.
         // Bu capability eger ki bir uygulama yukle degilse onu kontrol eder ve yukler eger yuklu ise uygulamainin yuklu olup olmadigini kontrol eder
         // ve yukluyse uygulamayi acar
