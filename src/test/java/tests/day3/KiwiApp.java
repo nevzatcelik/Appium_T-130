@@ -18,6 +18,7 @@ public class KiwiApp {
 
 
 
+
     @Test
     public void kiwiAppTest() throws InterruptedException {
 
@@ -28,6 +29,7 @@ public class KiwiApp {
 // misafir olarak devam et e tiklanir
        page.misafirButonu.click();
 // ardinda gelecek olan 3 adimada yesil butona basilarak devam edilir
+        Thread.sleep(2500);
         TouchAction action=new TouchAction<>(driver);
         for (int i=0; i<3; i++){
             ReusableMethods.koordinatTiklamaMethodu(541,1695);
@@ -46,14 +48,35 @@ public class KiwiApp {
         } else {
             page.sehirEkleKutusu.sendKeys("Ankara");
         }
-
+        Thread.sleep(1000);
         ReusableMethods.koordinatTiklamaMethodu(460,296);
 
         page.chooseButton.click();
 // varis ulkesi secenegine tiklanir ve gidilecek ulke girilir
-// gidis tarihi eylul ayinin 21 i olarak secilir ve set date e tiklanir
+        ReusableMethods.koordinatTiklamaMethodu(311,921);
+        driver.getKeyboard().pressKey("Antalya");
+        Thread.sleep(1000);
+        ReusableMethods.koordinatTiklamaMethodu(292,289);
+        page.chooseButton.click();
+// gidis tarihi mart ayinin 21 i olarak secilir ve set date e tiklanir
+        ReusableMethods.koordinatTiklamaMethodu(424,1052);
+        ReusableMethods.koordinatTiklamaMethodu(968,1333);
+        page.setDateButton.click();
 // search butonuna tiklanir
+         page.searchButton.click();
 // en  ucuz ve aktarmasiz filtrelemeleri yapilir
+        ReusableMethods.koordinatTiklamaMethodu(270,259);
+        ReusableMethods.koordinatTiklamaMethodu(522,595);
+
+        ReusableMethods.koordinatTiklamaMethodu(522,259);
+        ReusableMethods.koordinatTiklamaMethodu(431,1458);
+
+        Thread.sleep(3000);
+
+
+
 // gelen bilet fiyati kaydedilir ve kullanicin telefonuna sms olarak gonderilir
+        String enUcuzTicketText=page.enUcuzTicket.getText();
+        driver.sendSMS("555555555555","Kiwi uygulamasindaki en ucuz bilet fiyati: "+enUcuzTicketText);
     }
 }
